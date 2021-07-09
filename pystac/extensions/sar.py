@@ -4,7 +4,7 @@ https://github.com/stac-extensions/sar
 """
 
 import enum
-from typing import Any, Dict, Generic, List, Optional, TypeVar, cast
+from typing import Any, Dict, Generic, List, Optional, TypeVar, Union, cast
 
 import pystac
 from pystac.serialization.identify import STACJSONDescription, STACVersionID
@@ -58,7 +58,9 @@ class ObservationDirection(enum.Enum):
 
 
 class SarExtension(
-    Generic[T], PropertiesExtension, ExtensionManagementMixin[pystac.Item]
+    Generic[T],
+    PropertiesExtension,
+    ExtensionManagementMixin[Union[pystac.Item, pystac.Collection]],
 ):
     """SarItemExt extends Item to add sar properties to a STAC Item.
 

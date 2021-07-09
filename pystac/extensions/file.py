@@ -4,7 +4,7 @@ https://github.com/stac-extensions/file
 """
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import pystac
 from pystac.extensions.base import ExtensionManagementMixin, PropertiesExtension
@@ -85,7 +85,9 @@ class MappingObject:
         self.properties["summary"] = v
 
 
-class FileExtension(PropertiesExtension, ExtensionManagementMixin[pystac.Item]):
+class FileExtension(
+    PropertiesExtension, ExtensionManagementMixin[Union[pystac.Item, pystac.Collection]]
+):
     """A class that can be used to extend the properties of an :class:`~pystac.Asset`
     with properties from the :stac-ext:`File Info Extension <file>`.
 
